@@ -1,0 +1,282 @@
+/* ==================== DESIGN SYSTEM & RESET ==================== */
+:root {
+    --bg-dark: #090d16;
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.05);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #10b981;
+    /* Premium Mint Emerald */
+    --accent-glow: rgba(16, 185, 129, 0.15);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Luxury Background Glow Effect */
+.glow-bg {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+}
+
+.hero-tag {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.welcome {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    /* Dynamically scales smoothly across devices */
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    font-weight: 300;
+}
+
+/* ==================== CORE STRUCTURAL LAYOUT ==================== */
+.portfolio-section {
+    max-width: 1100px;
+    margin: 0 auto 120px auto;
+    padding: 0 24px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin-top: 12px;
+}
+
+/* Grid Container with dynamic auto-fit properties */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.text-box {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.text-box p {
+    margin-bottom: 24px;
+}
+
+.text-box p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    color: #0a7913;
+    font-weight: 600;
+
+}
+
+/* ==================== PREMIUM IMAGE STYLING ==================== */
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.image-border-effect {
+    position: relative;
+    padding: 12px;
+    border-radius: 50%;
+    transition: border-color 0.4s ease;
+}
+
+.image-box {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(20%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.image-border-effect:hover {
+    border-color: var(--accent);
+}
+
+.image-border-effect:hover .image-box {
+    transform: scale(1.03);
+    filter: grayscale(0%);
+}
+
+/* ==================== SKILLS & EXPERTISE CARDS ==================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 32px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-icon {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.skill-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.skill-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Interactive Hover States for Premium feel */
+.skill-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 12px 30px var(--accent-glow);
+}
+
+/* ==================== PREMIUM SCROLL REVEAL ANIMATIONS ==================== */
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(35px);
+    /* Gentle dip downwards before entry */
+    will-change: transform, opacity;
+    /* Informs browser engine to isolate layers for GPU acceleration */
+    transition:
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Class injected cleanly by JavaScript */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional fine-tuning: Cascading staggered effect for skill-cards inside sections */
+.reveal-item.is-visible .skill-card {
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Staggering thresholds to display cards step-by-step beautifully */
+.reveal-item.is-visible .skill-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.reveal-item.is-visible .skill-card:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.reveal-item.is-visible .skill-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--card-border);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ==================== ULTRA-RESPONSIVE BREAKPOINTS ==================== */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1.2fr 0.8fr;
+        /* Seamless split on tablet/desktop */
+        gap: 64px;
+    }
+
+    .hero {
+        min-height: 75vh;
+    }
+}
